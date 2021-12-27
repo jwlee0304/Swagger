@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,10 +39,14 @@ public class userController {
 		userInfo2.put("position", "사원");
 		userList.add(userInfo2);
 		
-		JSONObject obj = new JSONObject();		
-		for(int i=0;i<userList.size();i++) {			
-			obj.put("사용자" + (i+1), userList.get(i));		
-		}
+		
+		JSONArray jarr = new JSONArray();		
+		jarr.addAll(userList);		
+		
+		JSONObject obj = new JSONObject();
+		obj.put("total", userList.size());
+		obj.put("users", jarr);
+	
 		return obj;
 	}
 }
