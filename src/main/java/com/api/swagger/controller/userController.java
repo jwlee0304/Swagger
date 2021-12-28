@@ -98,7 +98,7 @@ public class userController {
 				}			
 			}
 			
-			if(position == null && position.isEmpty()) {
+			if(position == null || position.equals("")) {
 				rMsg = "존재하지 않은 사용자입니다.";
 				result = resultF;
 				obj.put("msg", rMsg);
